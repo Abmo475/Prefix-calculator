@@ -1,0 +1,34 @@
+<html>
+<head>
+    <script>
+function calc(prefixExp) {
+
+let stack = [];
+
+//function to check whether character is number or not
+function is_numeric(str) {
+  return /^\d+$/.test(str);
+}
+
+if (prefixExp) {
+  prefixExp = prefixExp.trim();
+  for (idx = prefixExp.length - 1; idx >= 0; idx--) {
+    if (is_numeric(parseInt(prefixExp[idx]))) {
+      stack.push(prefixExp[idx]);
+    } else if (prefixExp[idx] === " ") {
+      continue;
+    } else {
+      let tempAns = eval(stack.pop() + prefixExp[idx] + stack.pop());
+      stack.push(tempAns);
+    }
+  }
+}
+return  stack.pop();
+}
+console.log(this.calc("+ 3 4"))
+</script>
+</head>
+
+
+
+</html>
